@@ -2,6 +2,7 @@ package edu.ccnu.cn.cloud_homework_platform.fattyu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 public class FattyuApplication {
@@ -10,4 +11,8 @@ public class FattyuApplication {
         SpringApplication.run(FattyuApplication.class, args);
     }
 
+    @RequestMapping("/")
+    public String index(){
+        return "index";
+    }
 }
