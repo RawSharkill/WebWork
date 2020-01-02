@@ -69,14 +69,14 @@ body{
 
 .contextFrame .innerFrame .left{
     float: left;
-    width: 48%;
+    width: 25%;!important;
     margin: 10px auto;
     height: auto;
 }
 
 .contextFrame .innerFrame .right{
     float: right;
-    width: 48%;
+    width: 65%;!important;
     margin: 10px auto;
     height: auto;
 }

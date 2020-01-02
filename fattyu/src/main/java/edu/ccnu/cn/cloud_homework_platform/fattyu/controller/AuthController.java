@@ -1,6 +1,7 @@
 package edu.ccnu.cn.cloud_homework_platform.fattyu.controller;
 
 
+import edu.ccnu.cn.cloud_homework_platform.fattyu.Constants;
 import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.Student;
 import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.Teacher;
 import edu.ccnu.cn.cloud_homework_platform.fattyu.model.UserSession;
@@ -67,6 +68,7 @@ public class AuthController {
             userSession.setName(name);
             userSession.setNode(type);
             userSession.setPassword(password);
+            session.setAttribute(Constants.USE_SESSION_KEY,userSession);
             return "homepage";
         }
         else
