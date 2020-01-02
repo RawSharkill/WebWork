@@ -1,12 +1,9 @@
 package edu.ccnu.cn.cloud_homework_platform.fattyu.controller;
 
 import edu.ccnu.cn.cloud_homework_platform.fattyu.Constants;
-import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.HomeWork;
-import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.Student;
-import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.Teacher;
-import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.WorkStudentClass;
-import edu.ccnu.cn.cloud_homework_platform.fattyu.repo.*;
+import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.*;
 import edu.ccnu.cn.cloud_homework_platform.fattyu.dao.Class;
+import edu.ccnu.cn.cloud_homework_platform.fattyu.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +22,12 @@ public class TestController {
     private ClassRepo classRepo;
     @Autowired
     private WorkStudentClassRepo workStudentClassRepo;
+    @Autowired
+    private RecordRepo recordRepo;
+    @Autowired
+    private ClassTeacherRepo classTeacherRepo;
+
+
 
     @RequestMapping("/2")
     public void inject(){
@@ -41,12 +44,18 @@ public class TestController {
         Class c1 = new Class("班级1",System.currentTimeMillis(),"这是班级1");
         classRepo.save(c1);
 
+        Class c2 = new Class("班级2",System.currentTimeMillis(),"这是班级12");
+        classRepo.save(c2);
+
         Student rick = new Student("rick","123","rick city", Constants.STUDNET,"rickpass");
         studentsRepo.save(rick);
 
 
         Teacher morty = new Teacher("morty","123","rick city", Constants.TEACHER,"mortypass");
         teacherRepo.save(morty);
+
+        Teacher summer = new Teacher("summer","123","rick city", Constants.TEACHER,"summerpass");
+        teacherRepo.save(summer);
 
 
         WorkStudentClass workStudentClass1 = new WorkStudentClass(rick.getStudentId(),c1.getClassId(),homeWork1.getHomeWorkId());
@@ -59,6 +68,14 @@ public class TestController {
         workStudentClassRepo.save(workStudentClass3);
         workStudentClassRepo.save(workStudentClass4);
 
+        Record record1 = new Record(rick.getStudentId(),c1.getClassId(),morty.getTeacherId(),99);
+        Record record2 = new Record(rick.getStudentId(),c2.getClassId(),summer.getTeacherId(),100);
 
+        recordRepo.save(record1);
+        recordRepo.save(record2);
+
+
+        ClassTeacher classTeacher = new ClassTeacher(c1.getClassId(),morty.getTeacherId());
+        classTeacherRepo.save(classTeacher);
     }
 }

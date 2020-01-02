@@ -19,6 +19,9 @@ public class Class {
     @Column
     private String intro;
 
+
+    public Class(){}
+
     public Class(String className, long time, String intro) {
         this.className = className;
         this.time = time;

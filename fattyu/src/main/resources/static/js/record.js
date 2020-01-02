@@ -1,11 +1,10 @@
-function myrecord(classId,call){
+function myrecord(call){
     let allData = {};
     let createNewPost = $.ajax(({
         type:"GET",
-        url:"/record/userinfo/" + classId,
+        url:"/record/all/" ,
         success:function (result) {
             allData.data = result;
-            console.log(result);
         },
         error:function () {
             //todo 错误处理

@@ -20,10 +20,25 @@ public class Record {
     @Column
     private int teacherId;
 
-    public Record(int studentId, int classId, int teacherId) {
+
+    @Column
+    private int score;
+
+    public Record(){}
+
+    public Record(int studentId, int classId, int teacherId, int score) {
         this.studentId = studentId;
         this.classId = classId;
         this.teacherId = teacherId;
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getRecordId() {

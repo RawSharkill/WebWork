@@ -13,6 +13,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js">  </script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/record.js}"></script>
 </head>
 
 <body>
@@ -81,51 +82,18 @@
         <div class="contextFrame">
             <div class="innerFrame">
                 <div class="container">
-                    <table class="table table-hover">
+                    <table class="table table-hover" >
                         <thead>
-                       <tr>
-                            <th>课程名称</th>
-                            <th>教师</th>
-                            <th>时间</th>
-                            <th>类型</th>
-                            <th>成绩</th>
-                            <th>查看</th>
-                        </tr>
+                           <tr>
+                                <th>课程名称</th>
+                                <th>教师</th>
+                                <th>时间</th>
+                                <th>类型</th>
+                                <th>成绩</th>
+                                <th>查看</th>
+                            </tr>
                         </thead>
-                        <tbody>
-
-                         <tr>
-                            <td>高等数学</td>
-                            <td>方文波</td>
-                            <td>2017-3-5</td>
-                            <td>必修课</td>
-                            <td>95</td>
-                             <td><a href="/record/theClass">查看</a></td>
-                        </tr>
-                        <tr>
-                            <td>高等数学</td>
-                            <td>方文波</td>
-                            <td>2017-3-5</td>
-                            <td>必修课</td>
-                            <td>95</td>
-                            <td><a href="/record/theClass">查看</a></td>
-                        </tr>
-                        <tr>
-                            <td>高等数学</td>
-                            <td>方文波</td>
-                            <td>2017-3-5</td>
-                            <td>必修课</td>
-                            <td>95</td>
-                            <td><a href="/record/theClass">查看</a></td>
-                        </tr>
-                        <tr>
-                            <td>高等数学</td>
-                            <td>方文波</td>
-                            <td>2017-3-5</td>
-                            <td>必修课</td>
-                            <td>95</td>
-                            <td><a href="/record/theClass">查看</a></td>
-                        </tr>
+                            <tbody id="table_container">
                         </tbody>
                     </table>
                 </div>
@@ -178,6 +146,37 @@
         </div>
     </div>
 </footer>
+
+
+<!--<tr>-->
+    <!--<td>高等数学</td>-->
+    <!--<td>方文波</td>-->
+    <!--<td>2017-3-5</td>-->
+    <!--<td>必修课</td>-->
+    <!--<td>95</td>-->
+    <!--<td><a href="/record/theClass">查看</a></td>-->
+<!--</tr>-->
+<script type="text/javascript">
+    <!--todo 默认classid 为1-->
+    myrecord(function (data) {
+        let _html = "";
+        let result = data.data;
+        console.log(result[0].className);
+        for (let i = 0; i < result.length;i++) {
+            _html += " <tr>\n" +
+                "                                <td>"+ result[0].teacherName+"</td>\n" +
+                "                                <td>"+ result[0].className + "</td>\n" +
+                "                                <td>"+ result[0].time + "</td>\n" +
+                "                                <td>"+ result[0].intro + "</td>\n" +
+                "                                <td>"+ result[0].score + "</td>\n" +
+                "                                 <td><a href=\"/record/theClass\">查看</a></td>\n" +
+                "                            </tr>"
+        }
+        console.log(_html);
+        $('#table_container').html(_html);
+
+    });
+</script>
 
 <script type="text/javascript">
     var slideIndex = 0;

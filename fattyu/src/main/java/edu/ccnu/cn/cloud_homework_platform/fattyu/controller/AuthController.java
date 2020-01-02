@@ -52,8 +52,7 @@ public class AuthController {
                     result = 1;
             }
         }
-        else
-        {
+        else {
                 Student student = studentsRepo.findByNumber(name);
                 id = student.getStudentId();
                 type = 2;
