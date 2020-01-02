@@ -25,6 +25,7 @@ public class WorkStudentClass {
         this.homeworkId = homeworkId;
     }
 
+    public WorkStudentClass(){}
     public int getWorkStudentClassId() {
         return workStudentClassId;
     }

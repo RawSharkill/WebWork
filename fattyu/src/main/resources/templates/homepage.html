@@ -16,7 +16,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js">  </script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/myinfo.js}"></script>
+    <script type="text/javascript" th:src="@{/js/homepage.js}"></script>
 </head>
 
 <body>
@@ -92,16 +92,31 @@
             <div class="innerFrame">
                 <div class="left" style="width: 25%">
                     <ul class="nav nav-pills nav-stacked flex-column">
-                        <li class="active"><button id="my" class="btn btn-default">我的信息</button></li>
-                        <li><button id="work" class="btn btn-default">我的作业</button></li>
-                        <li><button id="intro" class="btn btn-default">我的通知</button></li>
-                        <li><button id="record" class="btn btn-default">我的成绩</button></li>
+                        <li class="active">
+                            <button id="info" class="btn btn-default" onclick="getMyInfo()">
+                                我的信息
+                            </button>
+                        </li>
+                        <li>
+                            <button id="work" class="btn btn-default" onclick="getHomeWork()">
+                                我的作业
+                            </button>
+                        </li>
+                        <li>
+                            <button id="intro" class="btn btn-default">
+                                我的通知
+                            </button>
+                        </li>
+                        <li>
+                            <button id="record" class="btn btn-default">我的成绩
+                            </button>
+                        </li>
                     </ul>
                 </div>
                 <div class="right">
                     <div class="textList">
                         <ul>
-                            <div id="aaa"></div>
+                            <div id="myinfo_container"></div>
                         </ul>
                     </div>
                 </div>
@@ -176,16 +191,52 @@
         setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
 </script>
+<!--姓名信息-->
+<!--<b>rick</b>-->
+<!--<b>2016210897</b>-->
+<!--<b>华中师范大学</b>-->
+
+<!--作业信息-->
+<!--<b>作业内容：杀死豚鼠</b>-->
+
 
 <script type="text/javascript">
-    myinfo(function (result) {
-      let name=result.studentName;
-      let num=result.number;
-      let h="  <div id=\"aaa\">\n" +
-          " \n" + name+ num+
-          "div>";
-      $("#aaa").html(h);
-    })
+    function getMyInfo() {
+        alert("我的信息");
+        myinfo(function (data) {
+            let result = data.data;
+            console.log(result);
+            let name = result.studentName;
+            let num = result.number;
+            let institute = result.institute;
+
+            let h = "<b>" + name + "</b>\n" +
+                "<b>" + num + "</b>\n" +
+                "<b>" + institute + "</b>";
+            console.log(h);
+            $("#myinfo_container").html(h);
+        });
+
+    }
+
+    function getHomeWork() {
+        alert("我的作业");
+        myhomeWork(function (data) {
+            let result = data.data;
+            console.log(result);
+            let _html = "";
+            for (let i = 0; i < result.length; i++) {
+                _html += "<b>" + result[i].content + "</b>\n<br>\n";
+            }
+            console.log(_html);
+            //清除
+            $("#myinfo_container").empty();
+            $("#myinfo_container").html(_html);
+
+        });
+    }
+
+
 </script>
 </body>
 </html>

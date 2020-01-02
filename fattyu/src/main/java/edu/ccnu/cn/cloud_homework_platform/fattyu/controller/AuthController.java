@@ -38,6 +38,7 @@ public class AuthController {
 
         String node1=httpServletRequest.getParameter("teacher");
         String node2=httpServletRequest.getParameter("student");
+
         int id=1;
         int type=0;
         int result=0;
@@ -53,10 +54,11 @@ public class AuthController {
         }
         else
         {
-                List<Student>students = studentsRepo.findAllByNumber(name);
+                Student student = studentsRepo.findByNumber(name);
+                id = student.getStudentId();
                 type = 2;
-                if(!students.isEmpty()) {
-                    String pass = students.get(0).getPassword();
+                if(student != null) {
+                    String pass = student.getPassword();
                     if (pass.equals(password))
                         result = 1;
                 }

@@ -14,12 +14,12 @@ public class Class {
     private String className;
 
     @Column
-    private String time;
+    private long time;
 
     @Column
     private String intro;
 
-    public Class(String className, String time, String intro) {
+    public Class(String className, long time, String intro) {
         this.className = className;
         this.time = time;
         this.intro = intro;
@@ -41,11 +41,11 @@ public class Class {
         this.className = className;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

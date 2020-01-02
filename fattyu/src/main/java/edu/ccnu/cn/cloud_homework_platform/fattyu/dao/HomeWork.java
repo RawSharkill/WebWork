@@ -9,13 +9,8 @@ public class HomeWork {
     @Id
     @GeneratedValue
     private int homeWorkId;
-
     @Column
     private String content;
-
-    public HomeWork(String content) {
-        this.content = content;
-    }
 
     public int getHomeWorkId() {
         return homeWorkId;
@@ -30,6 +25,13 @@ public class HomeWork {
     }
 
     public void setContent(String content) {
+        this.content = content;
+    }
+
+
+    public HomeWork(){}
+
+    public HomeWork(String content) {
         this.content = content;
     }
 }
