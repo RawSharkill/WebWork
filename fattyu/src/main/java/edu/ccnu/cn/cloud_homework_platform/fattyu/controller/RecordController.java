@@ -7,9 +7,7 @@ import edu.ccnu.cn.cloud_homework_platform.fattyu.model.UserSession;
 import edu.ccnu.cn.cloud_homework_platform.fattyu.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
@@ -30,6 +28,8 @@ public class RecordController {
     private TeacherRepo teacherRepo;
     @Autowired
     private WorkStudentClassRepo workStudentClassRepo;
+    @Autowired
+    private HomeworkRepo homeworkRepo;
 
     @RequestMapping("/theClass")
     public String theClass(){
@@ -55,5 +55,13 @@ public class RecordController {
         }
 
         return models;
+    }
+
+
+    @ResponseBody
+    @PostMapping("/handin")
+    public int handIn(@RequestBody HomeWork homework){
+        homeworkRepo.save(homework);
+        return 200;
     }
 }
